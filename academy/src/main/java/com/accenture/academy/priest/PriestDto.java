@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-class PriestDto {
+public class PriestDto {
     @Pattern(regexp = "^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?: [A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)+$", message = "First and last name must start with capital letter and must be separated")
     private String name;
     @NotNull(message = "Height must not be null")

@@ -1,7 +1,7 @@
 package com.accenture.academy.church;
 
 public class ChurchMapper {
-    static ChurchDao mapDtoToDao(ChurchDto churchDto) {
+    public static ChurchDao mapDtoToDao(ChurchDto churchDto) {
         return new ChurchDao(
                 churchDto.getName(),
                 churchDto.getNameOfCity(),

@@ -8,16 +8,16 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-class ChurchService {
+public class ChurchService {
     private final ChurchRepository churchRepository;
     List<ChurchDao> getAllChurches() {
         return churchRepository.findAll();
     }
 
-    void addChurch(ChurchDao churchDao){
+    public void addChurch(ChurchDao churchDao){
         churchRepository.save(churchDao);
     }
-    void addChurch(ChurchDto churchDto){
+    public void addChurch(ChurchDto churchDto){
         churchRepository.save(ChurchMapper.mapDtoToDao(churchDto));
     }
 

@@ -1,7 +1,7 @@
 package com.accenture.academy.priest;
 
 public class PriestMapper {
-    static PriestDao mapDtoToDao(PriestDto priestDto) {
+    public static PriestDao mapDtoToDao(PriestDto priestDto) {
         return new PriestDao(
                 priestDto.getName(),
                 priestDto.getHeightInCm(),

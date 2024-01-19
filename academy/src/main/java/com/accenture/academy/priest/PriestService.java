@@ -10,16 +10,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-class PriestService {
+public class PriestService {
     private final PriestRepository priestRepository;
     List<PriestDao> getAllPriests() {
         return priestRepository.findAll();
     }
 
-    void addPriest(PriestDao priestDao){
+    public void addPriest(PriestDao priestDao){
         priestRepository.save(priestDao);
     }
-    void addPriest(PriestDto priestDto){
+    public void addPriest(PriestDto priestDto){
         priestRepository.save(PriestMapper.mapDtoToDao(priestDto));
     }
     public PriestDao getPriestById(Long id) {
