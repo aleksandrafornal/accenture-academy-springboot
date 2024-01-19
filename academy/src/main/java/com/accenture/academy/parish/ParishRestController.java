@@ -1,6 +1,8 @@
 package com.accenture.academy.parish;
 
 import com.accenture.academy.church.ChurchDto;
+import com.accenture.academy.member.MemberDao;
+import com.accenture.academy.member.MemberDto;
 import com.accenture.academy.priest.PriestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +53,12 @@ public class ParishRestController {
     void addNewChurchToParish(@PathVariable Long parishId, @RequestBody ChurchDto churchDto){
         parishService.assignNewChurchToParish(churchDto, parishId);
     }
+
+    @PatchMapping("/parishId/{parishId}/member")
+    void addNewMemberToParish(@PathVariable Long parishId, @RequestBody MemberDto memberDto){
+        parishService.assignMemberToParish(memberDto, parishId);
+    }
+
 
     @PatchMapping("/{parishId}")
     void assignPriestToParish(@RequestBody PriestAssignmentDto priestAssignmentDto,

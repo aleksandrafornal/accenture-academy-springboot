@@ -2,6 +2,8 @@ package com.accenture.academy.parish;
 
 import com.accenture.academy.church.*;
 import com.accenture.academy.member.MemberDao;
+import com.accenture.academy.member.MemberDto;
+import com.accenture.academy.member.MemberMapper;
 import com.accenture.academy.priest.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,11 +71,11 @@ public class ParishService {
         parishRepository.save(parish);
     }
 
-    void assignMemberToParish(MemberDao memberDao, Long parishId) {
+    void assignMemberToParish(MemberDto memberDto, Long parishId) {
         ParishDao parish = parishRepository
                 .getById(parishId)
                 .orElseThrow(() -> new ParishNotFoundException("Parish with id " + parishId + " not found"));
-        parish.getMembers().add(memberDao);
+        parish.getMembers().add(MemberMapper.mapDtoToDao(memberDto));
         parishRepository.save(parish);
     }
 
