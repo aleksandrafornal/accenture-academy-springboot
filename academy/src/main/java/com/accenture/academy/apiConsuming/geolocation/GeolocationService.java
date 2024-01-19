@@ -1,9 +1,8 @@
-package com.accenture.academy.apiConsuming;
+package com.accenture.academy.apiConsuming.geolocation;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,23 +12,23 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
-public class CatFactService {
+public class GeolocationService {
 
-    private final HttpClient httpClient;
+    private final GeolocationConfig config;
 
-    @PostConstruct
-    public CatFact getCatFact() throws IOException, InterruptedException {
+   @PostConstruct
+    void getGeolocation() throws IOException, InterruptedException {
+
+        HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
-                .uri(URI.create("https://catfact.ninja/fact"))
+                .uri(URI.create("https://api.geoapify.com/v1/ipinfo?&apiKey=" + config.getApikey()))
                 .build();
         HttpResponse httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        String response = httpResponse.body().toString();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(response, CatFact.class);
+        log.info(httpResponse.body().toString());
     }
-
 }

@@ -1,9 +1,6 @@
 package com.accenture.academy.priest;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +9,8 @@ import static jakarta.persistence.GenerationType.*;
 @Entity
 @Data
 @NoArgsConstructor
-class PriestDao {
+@Table(name = "PRIEST")
+public class PriestDao {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;

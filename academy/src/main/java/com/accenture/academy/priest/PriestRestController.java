@@ -1,5 +1,6 @@
 package com.accenture.academy.priest;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ class PriestRestController {
 
     @PostMapping
     void addChurch(
-            @RequestBody PriestDto priestDto
+            @RequestBody @Valid PriestDto priestDto
     ){
         priestService.addPriest(priestDto);
     }

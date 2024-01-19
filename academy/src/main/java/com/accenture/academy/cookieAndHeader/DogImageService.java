@@ -1,9 +1,7 @@
-package com.accenture.academy.apiConsuming;
+package com.accenture.academy.cookieAndHeader;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,23 +11,20 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Service
-@RequiredArgsConstructor
-public class CatFactService {
-
-    private final HttpClient httpClient;
+@NoArgsConstructor
+public class DogImageService {
 
     @PostConstruct
-    public CatFact getCatFact() throws IOException, InterruptedException {
+    void getDogImage() throws IOException, InterruptedException {
+        HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
+                .uri(URI.create("https://dog.ceo/api/breeds/image/random"))
                 .GET()
-                .uri(URI.create("https://catfact.ninja/fact"))
+                .header("DOG", "cuteDog")
                 .build();
+
         HttpResponse httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         String response = httpResponse.body().toString();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(response, CatFact.class);
     }
-
 }

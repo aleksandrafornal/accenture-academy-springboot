@@ -18,11 +18,12 @@ import java.net.http.HttpResponse;
 @RequiredArgsConstructor
 public class ActivityService {
 
+    private final HttpClient httpClient;
+
     private final ActivityRepository activityRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     public void getActivity()  throws IOException, InterruptedException {
-        HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
@@ -65,7 +66,6 @@ public class ActivityService {
 
     @EventListener(ApplicationReadyEvent.class)
     public Activity getRandomActivity()  throws IOException, InterruptedException {
-        HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
