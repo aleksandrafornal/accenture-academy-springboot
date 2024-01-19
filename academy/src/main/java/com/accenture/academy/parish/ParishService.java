@@ -19,7 +19,7 @@ public class ParishService {
         return parishRepository.findAll();
     }
 
-    ParishDao getParishById(Long id) {
+    public ParishDao getParishById(Long id) {
         return parishRepository.getById(id)
                 .orElseThrow(() -> new ParishNotFoundException("Parish with id " + id + " not found"));
     }
@@ -43,7 +43,7 @@ public class ParishService {
 
     }
 
-    void assignPriestToParish(PriestDto priestDto, Long parishId) {
+    void assignNewPriestToParish(PriestDto priestDto, Long parishId) {
         ParishDao parish = parishRepository
                 .getById(parishId)
                 .orElseThrow(() -> new ParishNotFoundException("Parish with id " + parishId + " not found"));
@@ -60,7 +60,7 @@ public class ParishService {
         parishRepository.save(parish);
     }
 
-    void assignChurchToParish(ChurchDto churchDto, Long parishId) {
+    void assignNewChurchToParish(ChurchDto churchDto, Long parishId) {
         ParishDao parish = parishRepository
                 .getById(parishId)
                 .orElseThrow(() -> new ParishNotFoundException("Parish with id " + parishId + " not found"));
@@ -75,6 +75,14 @@ public class ParishService {
                 .orElseThrow(() -> new ParishNotFoundException("Parish with id " + parishId + " not found"));
         parish.getMembers().add(memberDao);
         parishRepository.save(parish);
+    }
+
+    void assignPriestToParish(PriestAssignmentDto priestAssignmentDto, Long id){
+        ParishDao parishDao = getParishById(id);
+        PriestDao priestDao = priestService.getPriestById(priestAssignmentDto.getPriestId());
+
+        parishDao.setPriestDao(priestDao);
+        parishRepository.save(parishDao);
     }
 
 }

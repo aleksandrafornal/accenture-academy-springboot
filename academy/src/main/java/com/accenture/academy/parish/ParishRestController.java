@@ -38,8 +38,8 @@ public class ParishRestController {
     }
 
     @PatchMapping("/parishId/{parishId}/priest")
-    void addPriestToParish(@PathVariable Long parishId, @RequestBody PriestDto priestDto){
-        parishService.assignPriestToParish(priestDto, parishId);
+    void addNewPriestToParish(@PathVariable Long parishId, @RequestBody PriestDto priestDto){
+        parishService.assignNewPriestToParish(priestDto, parishId);
     }
 
     @PatchMapping("/parishId/{parishId}/churchId/{churchId}")
@@ -48,9 +48,17 @@ public class ParishRestController {
     }
 
     @PatchMapping("/parishId/{parishId}/church")
-    void addChurchToParish(@PathVariable Long parishId, @RequestBody ChurchDto churchDto){
-        parishService.assignChurchToParish(churchDto, parishId);
+    void addNewChurchToParish(@PathVariable Long parishId, @RequestBody ChurchDto churchDto){
+        parishService.assignNewChurchToParish(churchDto, parishId);
     }
+
+    @PatchMapping("/{parishId}")
+    void assignPriestToParish(@RequestBody PriestAssignmentDto priestAssignmentDto,
+                              @PathVariable Long parishId){
+        parishService.assignPriestToParish(priestAssignmentDto, parishId);
+    }
+
+
 
 
 }
