@@ -30,7 +30,8 @@ class PriestRestController {
     }
 
     @PostMapping
-    void addChurch(
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void addPriest(
             @RequestBody @Valid PriestDto priestDto
     ){
         priestService.addPriest(priestDto);

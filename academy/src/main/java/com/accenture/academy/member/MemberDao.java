@@ -24,5 +24,7 @@ public class MemberDao {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
     }
+
+
 }
 

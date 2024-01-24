@@ -10,7 +10,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ChurchService {
     private final ChurchRepository churchRepository;
-    List<ChurchDao> getAllChurches() {
+    public List<ChurchDao> getAllChurches() {
         return churchRepository.findAll();
     }
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@Profile(value = "dev")
+//@Profile(value = "dev")
 public class HelloRestController {
     @GetMapping("/hello")
     String getHello(HttpServletRequest request, HttpServletResponse response) {

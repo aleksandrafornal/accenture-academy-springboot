@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "PARICH")
+@Table(name = "PARISH")
 @NoArgsConstructor
 public class ParishDao {
     @Id

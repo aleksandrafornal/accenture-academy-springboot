@@ -27,6 +27,7 @@ public class ChurchRestController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     ResponseEntity getChurchById(@PathVariable Long id){
         try {
             return ResponseEntity
@@ -40,6 +41,7 @@ public class ChurchRestController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
     void addChurch(
             @RequestBody @Valid ChurchDto churchDto
     ){

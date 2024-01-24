@@ -34,7 +34,16 @@ public class ParishDataInitializer {
                 Collections.emptySet(),
                 new CementaryDao()
         );
+
+        ParishDao parishDao1 = new ParishDao(
+                "",
+                null,
+                null,
+                Collections.emptySet(),
+                new CementaryDao()
+        );
         parishService.addParish(parishDao);
+        parishService.addParish(parishDao1);
     }
 
 
