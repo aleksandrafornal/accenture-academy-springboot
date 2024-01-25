@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PriestService {
     private final PriestRepository priestRepository;
-    List<PriestDao> getAllPriests() {
+    public List<PriestDao> getAllPriests() {
         return priestRepository.findAll();
     }
 
